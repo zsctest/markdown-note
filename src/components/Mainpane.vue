@@ -46,7 +46,7 @@
 		outline:none !important;
 		overflow-y: scroll;
 		flex: auto 1 1;
-		font-size: 1.2rem;
+		font-size: 1rem;
 		line-height: 1.4;
 	}
 </style>

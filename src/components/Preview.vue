@@ -32,7 +32,7 @@ export default {
   height: 100vh;
   font-family: "Consolas", "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
     sans-serif;
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 1.4;
   padding: 8px;
 }
@@ -54,6 +54,21 @@ export default {
 }
 h1 {
   font-size: 2em;
+}
+h2{
+  font-size: 1.9rem;
+}
+h3{
+  font-size: 1.8rem;
+}
+h4{
+  font-size: 1.7rem;
+}
+h5{
+  font-size: 1.6rem;
+}
+h6{
+  font-size: 1.5rem;
 }
 p {
   white-space:normal;

@@ -11,7 +11,7 @@ const markdown = function(content) {
 		// console.log("str",str);
 		
 		//解析代码块
-		let codeblockPattern = /```/;
+		let codeblockPattern = /^```/;
 		if(codeblockPattern.test(str)){
 			//匹配到代码块开始，第二次是结束时，值会是2
 			isCodeBlock++; 
