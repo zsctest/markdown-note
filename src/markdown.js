@@ -1,11 +1,14 @@
 const markdown = function(content) {
 	//将content解析为HTML
 	//分段，一般是"\n"
-	var pattern = /.+\n/g;
+	var pattern = /.*\n/g;       //这样就可以接收空字符加换行符\n了
 	var result, html = "";
 	let isCodeBlock = 0,blockCode = '';
+	content = annotation(content);
 	while ((result = pattern.exec(content)) != null) {
 		let str = result.shift();
+		console.log("str",str);
+		
 		//解析代码块
 		let codeblockPattern = /```/;
 		if(codeblockPattern.test(str)){
@@ -27,10 +30,10 @@ const markdown = function(content) {
 
 
 
-		//解析成HTML
+		//解析标题，加粗，下划线，删除线，行内代码和分隔线
 		let isTitle;
 		let newStr;
-		isTitle = title(str);
+		isTitle = title(str.slice(0));
 		if (!isTitle) {
 			//既不是标题也不是代码块
 			let tempstr = solid(str);
@@ -39,12 +42,19 @@ const markdown = function(content) {
 			tempstr = delDash(tempstr);
 			tempstr = codeline(tempstr);
 			tempstr = gapLine(tempstr);
-			// tempstr = comment(tempstr);
 			newStr = '<p>' + tempstr + '</p>';
 		} else if(isTitle){
 			//是标题
 			newStr = isTitle;
 		}
+
+		//解析注释块
+		// let annotationPattern = /^>\s/;
+		// if(annotationPattern.test(newStr)){
+		// 	console.log("annotation");
+		// 	annotation(newStr);
+		// }
+
 		html += newStr;
 	}
 
@@ -178,10 +188,26 @@ const markdown = function(content) {
 		return '<div class="codeblock"><pre>' + str + '</pre></div>';
 	}
 	//注释块
-	// function comment(str){
-		
-	// 	return str;
-	// }
+	function annotation(str){
+		let pattern = />\s.*\n/g;
+		let result = null,
+			replaceStr = [];
+		console.log("in");
+		while((result = pattern.exec(str))!= null){
+			console.log("matched");
+			let s = '';
+			let fixStr = result[0].replace(/>\s/,'');
+			// if(fixStr.length !== 0){
+			s = '<blockquote class="annotation">'+fixStr+'</blockquote>';
+			replaceStr.push(s);
+			// }
+		}
+		let pattern2 = />\s.*\n/;
+		replaceStr.forEach(s=>{
+			str = str.replace(pattern2,s)
+		})
+		return str;
+	}
 
 
 	

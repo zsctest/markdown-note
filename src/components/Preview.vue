@@ -27,7 +27,7 @@ export default {
 
 <style scoped>
 .preview {
-  background-color: antiquewhite;
+  background-color: #fff;
   width: 50%;
   height: 100vh;
   font-family: "Consolas", "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
@@ -58,5 +58,10 @@ p {
   white-space:normal;
   word-wrap:break-word;
   word-break:break-all;
+}
+.annotation{
+	color:lightslategray;
+	border-left:mediumaquamarine 2px solid;
+	padding-left:16px;
 }
 </style>
