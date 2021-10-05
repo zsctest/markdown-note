@@ -8,7 +8,7 @@ const markdown = function(content) {
 	// content = annotation(content);
 	while ((result = pattern.exec(content)) != null) {
 		let str = result.shift();
-		console.log("str",str);
+		// console.log("str",str);
 		
 		//解析代码块
 		let codeblockPattern = /```/;
@@ -37,7 +37,8 @@ const markdown = function(content) {
 		isTitle = title(str.slice(0));
 		if (!isTitle) {
 			//既不是标题也不是代码块
-			let tempstr = solid(str);
+			let tempstr = dealHtml(str);
+			tempstr = solid(tempstr);
 			tempstr = linkMark(tempstr);
 			tempstr = underline(tempstr);
 			tempstr = italic(tempstr);
@@ -187,7 +188,6 @@ const markdown = function(content) {
 	function annotation(str){
 		let pattern = /^>\s.*\n/g;
 		if(pattern.test(str)){
-			console.log("in",str);
 			let fixStr = str.replace(/^>\s/,'');
 			let s = '<blockquote class="annotation">'+fixStr+'</blockquote>';
 			str = str.replace(/^>\s.*\n/,s);
@@ -201,18 +201,34 @@ const markdown = function(content) {
 		let result = null,
 			replaceStr = [];
 		while((result = url.exec(str))!= null){
-			console.log("matched");
+
 			let url = result[2].slice(1,result[2].length-1);
 			let linkname = result[1].length > 2?result[1].slice(1,result[1].length-1):url;
 			let s = '<a href="'+url+'" target="_blank"><i>'+linkname+'</i></a>';
 			replaceStr.push(s.slice(0));
-			console.log(s);
+
 		}
 		let pattern = /(\[.*\])(\(.*\))/;
 		replaceStr.forEach(s=>{
 			str = str.replace(pattern,s);
 		})
-		console.log(str);
+
+		return str;
+	}
+	//处理HTML标签
+	function dealHtml(str){
+		let pattern = /<\s?[^<>]+\s?>/g;
+		let result = null,
+			replaceStr = [];
+		while((result = pattern.exec(str))!=null){
+			let s = '&lt;'+result[0].slice(1,result[0].length-1)+"&gt;";
+			replaceStr.push(s);
+		}
+		let pattern2 = /<\s?[^<>]+\s?>/;
+		replaceStr.forEach(s=>{
+			str = str.replace(pattern2,s);
+		});
+		console.log("new",str);
 		return str;
 	}
 

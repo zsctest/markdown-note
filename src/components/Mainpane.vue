@@ -30,7 +30,7 @@
 <style scoped>
 	.main{
 		background-color: #2C3E50;
-		width:50%;
+		width:45%;
 		height:100vh;
 		display: flex;
 		flex-direction: column;

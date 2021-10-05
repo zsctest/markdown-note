@@ -28,7 +28,7 @@ export default {
 <style scoped>
 .preview {
   background-color: #fff;
-  width: 50%;
+  width: 55%;
   height: 100vh;
   font-family: "Consolas", "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
     sans-serif;
@@ -50,6 +50,7 @@ export default {
   background-color: ivory;
   border-radius: 5px;
   padding:0 8px;
+  /* width:100%; */
 }
 h1 {
   font-size: 2em;
