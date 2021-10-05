@@ -5,7 +5,7 @@
 <script>
 export default {
   name: "Preview",
-  props: ["notehtml"],
+  props: ["notehtml","mainScrollTop"],
   data() {
     return {
       content: this.notehtml,
@@ -20,19 +20,11 @@ export default {
   watch: {
     notehtml: function () {
       this.content = this.notehtml;
-      function scrollToBottom() {
-        const domWrapper = document.querySelector('.preview'); // 外层容器 出现滚动条的dom
-        (function smoothscroll() {
-            const currentScroll = domWrapper.scrollTop;   // 已经被卷掉的高度
-            const clientHeight = domWrapper.offsetHeight; // 容器高度
-            const scrollHeight = domWrapper.scrollHeight; // 内容总高度
-            if (scrollHeight - 10 > currentScroll + clientHeight) {
-                window.requestAnimationFrame(smoothscroll);
-                domWrapper.scrollTo(0, currentScroll + (scrollHeight - currentScroll - clientHeight) / 2);
-            }
-        })();
-      }
-      scrollToBottom();
+
+      let previewArea = document.querySelector(".preview");
+      // window.requestAnimationFrame(()=>{
+        previewArea.scrollTo(0,this.mainScrollTop+20);
+      // })
     },
   },
 };

@@ -228,7 +228,7 @@ const markdown = function(content) {
 		replaceStr.forEach(s=>{
 			str = str.replace(pattern2,s);
 		});
-		console.log("new",str);
+		// console.log("new",str);
 		return str;
 	}
 

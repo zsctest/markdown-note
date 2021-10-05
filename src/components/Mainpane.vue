@@ -20,7 +20,9 @@
 		watch:{
 			content:function(){
 				// console.log("mainpane发送数据",this.content);
-				this.$emit("notechange",this.content);
+				//获取编辑区滚动条高度
+				let mainScrollTop = document.querySelector("textarea").scrollTop;
+				this.$emit("notechange",{"content":this.content,"height":mainScrollTop});
 			}
 		}
 	}

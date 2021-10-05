@@ -2,7 +2,7 @@
 	<div id="notebook">
 		<Sidebar />
 		<Mainpane @notechange="noteContent"/>
-		<Preview :notehtml="notehtml"/>
+		<Preview :notehtml="notehtml" :mainScrollTop="mainScrollTop"/>
 	</div>
 
 </template>
@@ -22,14 +22,17 @@
 		data(){
 			return{
 				notehtml:"",
+				mainScrollTop:0,
 			}
 		},
 		methods:{
-			noteContent(note){
+			noteContent(data){
 				//接收到编辑区组件发来的解析成HTML后的笔记内容
-				// console.log("App接收到数据,然后发给Preview",note);
+
 				//传给预览区组件
-				this.notehtml = markdown(note);
+				this.notehtml = markdown(data.content);
+				this.mainScrollTop = data.height;
+
 			}
 		}
 	}
