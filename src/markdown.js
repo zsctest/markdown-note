@@ -1,11 +1,11 @@
 const markdown = function(content) {
 	//将content解析为HTML
 	//分段，一般是"\n"
-	var pattern = /.*\n/g;       //这样就可以接收空字符加换行符\n了
+	var pattern = /.+\n/g;       //这样就可以接收空字符加换行符\n了
 	var result, html = "";
 	let isCodeBlock = 0,blockCode = '';
 	//处理注释
-	content = annotation(content);
+	// content = annotation(content);
 	while ((result = pattern.exec(content)) != null) {
 		let str = result.shift();
 		console.log("str",str);
@@ -44,7 +44,7 @@ const markdown = function(content) {
 			tempstr = delDash(tempstr);
 			tempstr = codeline(tempstr);
 			tempstr = gapLine(tempstr);
-			
+			tempstr = annotation(tempstr);
 			newStr = '<p>' + tempstr + '</p>';
 		} else if(isTitle){
 			//是标题
@@ -185,23 +185,14 @@ const markdown = function(content) {
 	}
 	//注释块
 	function annotation(str){
-		let pattern = />\s.*\n/g;
-		let result = null,
-			replaceStr = [];
-		console.log("in");
-		while((result = pattern.exec(str))!= null){
+		let pattern = /^>\s.*\n/g;
+		if(pattern.test(str)){
+			console.log("in",str);
+			let fixStr = str.replace(/^>\s/,'');
+			let s = '<blockquote class="annotation">'+fixStr+'</blockquote>';
+			str = str.replace(/^>\s.*\n/,s);
 			
-			let s = '';
-			let fixStr = result[0].replace(/>\s/,'');
-			// if(fixStr.length !== 0){
-			s = '<blockquote class="annotation">'+fixStr+'</blockquote>';
-			replaceStr.push(s);
-			// }
 		}
-		let pattern2 = />\s.*\n/;
-		replaceStr.forEach(s=>{
-			str = str.replace(pattern2,s)
-		})
 		return str;
 	}
 	//链接处理
