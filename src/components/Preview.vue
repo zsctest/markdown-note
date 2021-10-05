@@ -1,51 +1,62 @@
 <template>
-	<aside class="preview" v-html="notePreview">
-		
-	</aside>
+  <aside class="preview" v-html="notePreview"></aside>
 </template>
 
 <script>
-	export default{
-		name:"Preview",
-		props:["notehtml"],
-		data(){
-			return{
-				content:this.notehtml
-			}
-		},
-		computed:{
-			notePreview(){
-				// console.log("preview接收到数据",this.content);
-				return this.content;
-			}
-		},
-		watch:{
-			notehtml:function(){
-				this.content = this.notehtml;
-			}
-		}
-	}
-
+export default {
+  name: "Preview",
+  props: ["notehtml"],
+  data() {
+    return {
+      content: this.notehtml,
+    };
+  },
+  computed: {
+    notePreview() {
+      // console.log("preview接收到数据",this.content);
+      return this.content;
+    },
+  },
+  watch: {
+    notehtml: function () {
+      this.content = this.notehtml;
+    },
+  },
+};
 </script>
 
 <style scoped>
-	.preview{
-		background-color:antiquewhite;
-		width:50%;
-		height:100vh;
-		font-family:'Consolas','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-		font-size: 1.2rem;
-		line-height: 1.4;
-		padding:8px;
-	}
+.preview {
+  background-color: antiquewhite;
+  width: 50%;
+  height: 100vh;
+  font-family: "Consolas", "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+    sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  padding: 8px;
+}
 </style>
 <style>
-	.codeline{
-		color:chocolate;
-		font-family: 'Consolas',''monospace',Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-		/* font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace; */
-		font-size: inherit;
-		/* background-color:#309975; */
-		border-radius:4px;
-	}
+.codeline {
+  color: chocolate;
+  font-family: "Consolas", "" monospace ",Gill Sans", "Gill Sans MT", Calibri,
+    "Trebuchet MS", sans-serif;
+  /* font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace; */
+  font-size: inherit;
+  border-radius: 4px;
+}
+.codeblock {
+  background-color: ivory;
+  border-radius: 5px;
+  padding:0 8px;
+}
+h1 {
+  font-size: 2em;
+}
+p {
+  white-space:normal;
+  word-wrap:break-word;
+  word-break:break-all;
+}
 </style>
