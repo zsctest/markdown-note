@@ -4,6 +4,7 @@ const markdown = function(content) {
 	var pattern = /.*\n/g;       //这样就可以接收空字符加换行符\n了
 	var result, html = "";
 	let isCodeBlock = 0,blockCode = '';
+	//处理注释
 	content = annotation(content);
 	while ((result = pattern.exec(content)) != null) {
 		let str = result.shift();
@@ -37,23 +38,18 @@ const markdown = function(content) {
 		if (!isTitle) {
 			//既不是标题也不是代码块
 			let tempstr = solid(str);
+			tempstr = linkMark(tempstr);
 			tempstr = underline(tempstr);
 			tempstr = italic(tempstr);
 			tempstr = delDash(tempstr);
 			tempstr = codeline(tempstr);
 			tempstr = gapLine(tempstr);
+			
 			newStr = '<p>' + tempstr + '</p>';
 		} else if(isTitle){
 			//是标题
 			newStr = isTitle;
 		}
-
-		//解析注释块
-		// let annotationPattern = /^>\s/;
-		// if(annotationPattern.test(newStr)){
-		// 	console.log("annotation");
-		// 	annotation(newStr);
-		// }
 
 		html += newStr;
 	}
@@ -194,7 +190,7 @@ const markdown = function(content) {
 			replaceStr = [];
 		console.log("in");
 		while((result = pattern.exec(str))!= null){
-			console.log("matched");
+			
 			let s = '';
 			let fixStr = result[0].replace(/>\s/,'');
 			// if(fixStr.length !== 0){
@@ -208,7 +204,26 @@ const markdown = function(content) {
 		})
 		return str;
 	}
-
+	//链接处理
+	function linkMark(str){
+		let url = /(\[.*\])(\(.*\))/g;
+		let result = null,
+			replaceStr = [];
+		while((result = url.exec(str))!= null){
+			console.log("matched");
+			let url = result[2].slice(1,result[2].length-1);
+			let linkname = result[1].length > 2?result[1].slice(1,result[1].length-1):url;
+			let s = '<a href="'+url+'" target="_blank"><i>'+linkname+'</i></a>';
+			replaceStr.push(s.slice(0));
+			console.log(s);
+		}
+		let pattern = /(\[.*\])(\(.*\))/;
+		replaceStr.forEach(s=>{
+			str = str.replace(pattern,s);
+		})
+		console.log(str);
+		return str;
+	}
 
 	
 }

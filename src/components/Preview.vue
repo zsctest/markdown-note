@@ -64,4 +64,5 @@ p {
 	border-left:mediumaquamarine 2px solid;
 	padding-left:16px;
 }
+
 </style>
