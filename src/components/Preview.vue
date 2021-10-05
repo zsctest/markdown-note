@@ -22,9 +22,10 @@ export default {
       this.content = this.notehtml;
 
       let previewArea = document.querySelector(".preview");
-      // window.requestAnimationFrame(()=>{
-        previewArea.scrollTo(0,this.mainScrollTop+20);
-      // })
+      let previewScrollHeight = previewArea.scrollHeight;
+      window.requestAnimationFrame(()=>{
+        previewArea.scrollTo(0,this.mainScrollTop*previewScrollHeight);
+      })
     },
   },
 };
@@ -49,7 +50,6 @@ export default {
   color: chocolate;
   font-family: "Consolas", "" monospace ",Gill Sans", "Gill Sans MT", Calibri,
     "Trebuchet MS", sans-serif;
-  /* font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace; */
   font-size: inherit;
   border-radius: 4px;
 }

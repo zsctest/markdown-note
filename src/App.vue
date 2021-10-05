@@ -22,7 +22,7 @@
 		data(){
 			return{
 				notehtml:"",
-				mainScrollTop:0,
+				mainScrollTop:1,
 			}
 		},
 		methods:{
