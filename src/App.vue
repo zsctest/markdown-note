@@ -1,12 +1,7 @@
 <template>
   <div id="notebook">
-    <template v-if="true">
       <Mainpane @notechange="noteContent" />
       <Preview :notehtml="notehtml" :mainScrollTop="mainScrollTop" />
-    </template>
-    <div v-else class="notesEmpty">
-      <div>添加笔记开始写作吧！</div>
-    </div>
   </div>
 </template>
 
@@ -57,18 +52,35 @@ export default {
 
 #notebook {
   display: flex;
-  /* justify-content: space-around; */
 }
-.notesEmpty {
-  width: 100%;
-  height: 100vh;
-  text-align: center;
+/* fallback */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v109/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
 }
-.notesEmpty > div {
-  padding-top: 50%;
-  transform: translateY(-50%);
-  font-size: 4rem;
-  opacity: 0.5;
-  color: darkgray;
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+.material-icons {
+    font-size: 24px;
+    line-height: 1;
+    vertical-align: middle;
+    margin: -3px;
+    padding-bottom: 1px;
 }
 </style>

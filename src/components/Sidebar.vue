@@ -2,7 +2,7 @@
   <aside class="side-bar">
     <div class="toolbar">
       <button @click="addNote" :title="notes.length + ' note(s) already'">
-        增加笔记
+        <i class="material-icons">add</i>增加笔记
       </button>
     </div>
     <div class="notes">
@@ -102,7 +102,7 @@ data () {
     }
   },
   updated(){
-    console.log("updated",this.selectedId);
+    console.log("selected",this.selectedId);
     // this.$emit("select",this.selectedId);
   }
 
@@ -117,10 +117,12 @@ data () {
 }
 .toolbar {
   padding: 4px;
+
 }
 .note {
   padding: 16px;
   cursor: pointer;
+  /* border-bottom: white 1px solid; */
 }
 
 .note:hover {
@@ -133,5 +135,10 @@ data () {
 .note.selected {
   background: #40b883;
   color: white;
+}
+button{
+  font-size: inherit;
+  /* line-height:inherit; */
+  border:#ade2ca 1px solid;
 }
 </style>
