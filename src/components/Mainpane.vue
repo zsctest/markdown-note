@@ -32,11 +32,15 @@ export default {
   watch: {
     content: function () {
       //获取编辑区滚动条高度
-      let mainScrollTop = document.querySelector("textarea").scrollTop || 0;
+      let textarea = document.querySelector("textarea");
+      let mainScrollTop = textarea.scrollTop;
       let mainScrollHeight =
-        document.querySelector("textarea").scrollHeight || 1;
+        document.querySelector("textarea").scrollHeight - 
+          textarea.offsetHeight - 38;
+      //38 = fontsize * lineHeight + paddingtop + paddingbottom
+      // console.log("rate",mainScrollTop / mainScrollHeight);
       this.$emit("notechange", {
-        content: this.content,
+        content: this.noSelectedNote?"":this.content,
         height: mainScrollTop / mainScrollHeight,
       });
     },
@@ -61,9 +65,9 @@ export default {
       this.content = "";
       this.noSelected = true;
     },
-	star(){
-		this.$refs.sidebar.favoriteNote();
-	}
+    star(){
+      this.$refs.sidebar.favoriteNote();
+    }
   },
   computed: {
     noSelectedNote() {

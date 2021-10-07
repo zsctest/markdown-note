@@ -21,10 +21,11 @@ export default {
   watch: {
     notehtml: function () {
       this.content = this.notehtml;
-
-      // let previewArea = document.querySelector(".preview");
-      let previewArea = this.$refs.preview;
-      let previewScrollHeight = previewArea.scrollHeight;
+      let previewArea = document.querySelector(".preview");
+      // let previewArea = this.$refs.preview;
+      let previewScrollHeight = previewArea.scrollHeight - previewArea.clientHeight;
+      console.log("rate receive",this.mainScrollTop);
+      console.log("scrolltop",this.mainScrollTop*previewScrollHeight);
       window.requestAnimationFrame(()=>{
         previewArea.scrollTo(0,this.mainScrollTop*previewScrollHeight);
       })

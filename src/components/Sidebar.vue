@@ -27,7 +27,7 @@ data () {
     return {
       notes: JSON.parse(localStorage.getItem('notes')) || [],
       selectedId: localStorage.getItem('selected-id') || null,
-      isSelected:false,
+      isSelected:this.selectedNote,
     }
   },
 
@@ -103,7 +103,7 @@ data () {
   },
   updated(){
     console.log("selected",this.selectedId);
-    // this.$emit("select",this.selectedId);
+
   }
 
 };
@@ -119,6 +119,26 @@ data () {
   padding: 4px;
 
 }
+.notes{
+  overflow: auto;
+  height:90%;
+}
+
+.notes::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+	background: #adffeb;   /*可以设置轨道颜色*/
+	padding-right: 2px;
+  border-radius: 10px;
+}
+.notes::-webkit-scrollbar-thumb {
+	background: #2e826d;
+	border-radius: 10px;
+}
+.notes::-webkit-scrollbar-thumb:hover {
+	background: #38822e;
+}
+
 .note {
   padding: 16px;
   cursor: pointer;

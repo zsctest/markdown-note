@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       notehtml: "",
-      mainScrollTop: 1,
+      mainScrollTop: 0,
     };
   },
 
