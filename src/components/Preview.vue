@@ -1,5 +1,5 @@
 <template>
-  <aside class="preview" v-html="notePreview"></aside>
+  <aside ref="preview" class="preview" v-html="notePreview"></aside>
 </template>
 
 <script>
@@ -16,12 +16,14 @@ export default {
       // console.log("preview接收到数据",this.content);
       return this.content;
     },
+    
   },
   watch: {
     notehtml: function () {
       this.content = this.notehtml;
 
-      let previewArea = document.querySelector(".preview");
+      // let previewArea = document.querySelector(".preview");
+      let previewArea = this.$refs.preview;
       let previewScrollHeight = previewArea.scrollHeight;
       window.requestAnimationFrame(()=>{
         previewArea.scrollTo(0,this.mainScrollTop*previewScrollHeight);
