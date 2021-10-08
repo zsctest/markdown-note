@@ -1,4 +1,25 @@
+**Demo演示**
+
+https://zsctest.github.io/markdown-note/
+
+**部署**
+
+```
+npm run build
+```
+
+注意：vue.config.js中的配置需要根据实际情况配置。
+
+默认情况下，Vue CLI 会假设你的应用是被部署在一个域名的根路径上，例如你的应用被部署在 `https://www.my-app.com/my-app/`，则设置 `publicPath` 为 `/my-app/`，我这里则是`/markdown-note/`。
+
+这个值也可以被设置为空字符串 (`''`) 或是相对路径 (`'./'`)，这样所有的资源都会被链接为相对路径，这样打出来的包可以被部署在任意路径，也可以用在类似 Cordova hybrid 应用的文件系统中。但这个会有一些限制，详见[官方文档](https://cli.vuejs.org/zh/config/#publicpath)
+
+而assetsDir是放置生成的静态资源 (js、css、img、fonts) 的 (相对于 `outputDir` 的) 目录。
+
+
+
  **已完成：** 
+
 1. 三栏布局：利用flex进行布局，设高度为100vh
 2. 完成Mainpane编辑区组件和Preview预览区组件的通信。
    以父组件作为桥梁，利用watch监视编辑内容的变化，从而触发事件，将编辑的内容提交到父组件，父组件在通过props传给预览区组件。
