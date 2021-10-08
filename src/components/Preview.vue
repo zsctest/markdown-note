@@ -43,7 +43,7 @@ export default {
     sans-serif;
   font-size: 1rem;
   line-height: 36px;
-  padding: 20px 10px;
+  padding: 16px 10px;
 
   overflow: auto;
 }
