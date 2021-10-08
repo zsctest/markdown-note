@@ -37,7 +37,7 @@ export default {
 <style scoped>
 .preview {
   background-color: #fff;
-  width: 55%;
+  width: 50%;
   height: 100vh;
   font-family: "Consolas", "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
     sans-serif;

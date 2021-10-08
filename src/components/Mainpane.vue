@@ -36,7 +36,7 @@ export default {
       let mainScrollTop = textarea.scrollTop;
       let mainScrollHeight =
         document.querySelector("textarea").scrollHeight - 
-          textarea.offsetHeight - 38;
+          textarea.offsetHeight-38;
       //38 = fontsize * lineHeight + paddingtop + paddingbottom
       // console.log("rate",mainScrollTop / mainScrollHeight);
       this.$emit("notechange", {
@@ -84,7 +84,7 @@ export default {
 .main {
   position: relative;
   background-color: #2c3e50;
-  width: 45%;
+  width: 50%;
   height: 100vh;
   display: flex;
   flex-direction: column;
