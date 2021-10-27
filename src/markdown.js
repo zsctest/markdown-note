@@ -6,6 +6,7 @@ const markdown = function(content) {
 	let isCodeBlock = 0,blockCode = '';
 	//处理注释
 	// content = annotation(content);
+	//一行一行地解析
 	while ((result = pattern.exec(content)) != null) {
 		let str = result.shift();
 		// console.log("str",str);
@@ -24,7 +25,7 @@ const markdown = function(content) {
 			continue;
 		}
 		if(isCodeBlock<2 && isCodeBlock>0){
-			blockCode += str;  //把块代码收集
+			blockCode += dealHtml(str);  //把块代码收集
 			continue;
 		}
 
@@ -231,7 +232,12 @@ const markdown = function(content) {
 		// console.log("new",str);
 		return str;
 	}
-
-	
+/*
+	//识别有序列表
+	function orderList(str){
+		let pattern = /(^[1-9]\.)(.+)/;
+		let template = '<ol>'
+	}
+	*/
 }
 export default markdown;
